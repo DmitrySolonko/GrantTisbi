@@ -1,0 +1,41 @@
+{%extends 'base_layout.html' %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/ArticlePageStyle.css' %}">
+{% endblock %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block header %}
+{% include 'MainApp/header.html' %}
+{% endblock %}
+
+
+{% block content %}
+<div class="page__article article">
+    <div class="article__container _container">
+        <div class="article__header article-header">
+            <div class="article-header__icon">
+                <img src="{{Article.icon.url}}" alt="">
+            </div>
+            <div class="article-header__title">
+                {{Article.title}}
+            </div>
+        </div>
+        <div class="article__body">
+            <div class="article__text">
+                {{Article.content|safe}}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% include 'MainApp/footer.html' %}
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

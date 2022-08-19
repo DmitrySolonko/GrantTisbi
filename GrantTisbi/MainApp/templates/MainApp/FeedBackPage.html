@@ -1,0 +1,52 @@
+{%extends 'base_layout.html' %}
+{% load static %}
+
+{% block styles %}
+
+
+<link rel="stylesheet" href="{% static 'css/FeedbackPageStyle.css' %}">
+{% endblock %}
+
+{% block title %}Обратная связь{% endblock %}
+
+{% block header %}
+{% include 'MainApp/header.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="page__feedback feedback">
+    <div class="feedback__container _container">
+        <div class="article__title">
+            {% if messages %}
+            {% for message in messages %}
+            {% if message.tags == 'error' %}
+            <div class="alert__error alert">
+                {{message}}
+            </div>
+            {% else %}
+            <div class="alert__success alert">
+                {{message}}
+            </div>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+            <h1>Обратная связь</h1>
+        </div>
+        <div class="article__form">
+            <form method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button type="submit" class="btn">Отправить вопрос</button>
+            </form>
+        </div>
+    </div>
+</div>
+{%endblock%}
+
+{% block footer %}
+{% include 'MainApp/footer.html' %}
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

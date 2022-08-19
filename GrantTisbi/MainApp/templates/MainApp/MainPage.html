@@ -1,0 +1,95 @@
+{%extends 'base_layout.html' %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/MainPageStyle.css' %}">
+{% endblock %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block header %}
+{% include 'MainApp/header.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="page__main-title main-title">
+    <div class="main-title__container _container">
+        <div class="main-title__body">
+            <div class="main-title__text">
+                <div class="text__main-title">Семинары по цифровой грамотности для выпускников интернатных учреждений и
+                    замещающих семей
+                </div>
+                <div class="img__main-title">
+                    <img src="{% static 'image/duga.svg' %}" alt="Duga">
+                </div>
+
+            </div>
+            <div class="main-title__image">
+                <img src="{% static 'image/image1.png'%}" alt="Laptop">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slider _container">
+    <div class="slider__item item">
+        <div class="item__img">
+            <img src="{% static 'image/carousel-item1.png'%}" alt="carousel-image 1">
+        </div>
+        <div class="item__text">В конце октября в Казани пройдут обучающие семинары по цифровой грамотности для
+            выпускников интернатных учреждений и замещающих семей из 14 регионов ПФО
+        </div>
+    </div>
+    <div class="slider__item item">
+        <div class="item__img">
+            <img src="{% static 'image/carousel-item2.png'%}" alt="">
+        </div>
+        <div class="item__text">
+            В ноябре, для выпускников интернатных учреждений и замещающих семей Университет управления ТИСБИ проведет
+            серию бесплатных онлайн курсов по СММ, разработке сайтов, графическому дизайну, интернет маркетингу
+        </div>
+    </div>
+</div>
+
+<div class="page__help-for-you help-for-you">
+    <div class="help-for-you__container _container">
+        <div class="help-for-you__header-part header-part">
+            <div class="header-part__title">
+                Чем мы можем вам помочь
+            </div>
+        </div>
+        <div class="help-for-you__body">
+            <div class="help-for-you__row">
+                {% for article in Articles %}
+                <div class="help-for-you__column">
+                    <a class="aritcle__link" href="{{article.get_absolute_url}}">
+                        <article class="help-for-you__item item-help">
+                            <div class="item-help__content">
+                                <div class="item-help__icon">
+                                    <img src="{{article.icon.url}}" alt="home">
+                                </div>
+                                <div class="item-help__title">
+                                    {{article.title}}
+                                </div>
+                                <div class="item-help__text">
+                                    {{article.description}}
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% include 'MainApp/footer.html' %}
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/GrantMainPageJs.js'%}"></script>
+<script src="{% static 'js/slick.min.js'%}"></script>
+{% endblock %}
